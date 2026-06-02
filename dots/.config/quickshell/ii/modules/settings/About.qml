@@ -101,13 +101,20 @@ ContentPage {
                 Layout.alignment: Qt.AlignVCenter
                 
                 StyledText {
-                    text: Translation.tr("Sonu's Hyprland Dots")
+                    text: Translation.tr("Hyprdroid")
                     font.pixelSize: Appearance.font.pixelSize.title
                 }
 
                 StyledText {
+                    text: Translation.tr("Android theme based hyprland & quickshell dot files!!!")
                     font.pixelSize: Appearance.font.pixelSize.normal
-                    text: "[sonusid1325/dots-hyprland](https://github.com/sonusid1325/dots-hyprland)"
+                    wrapMode: Text.WordWrap
+                    Layout.fillWidth: true
+                }
+
+                StyledText {
+                    font.pixelSize: Appearance.font.pixelSize.normal
+                    text: "[sonusid1325/hyprdroid](https://github.com/sonusid1325/hyprdroid)"
                     textFormat: Text.MarkdownText
                     onLinkActivated: (link) => {
                         Qt.openUrlExternally(link)
@@ -132,7 +139,7 @@ ContentPage {
                 materialIcon: "code"
                 mainText: Translation.tr("Repository")
                 onClicked: {
-                    Qt.openUrlExternally("https://github.com/sonusid1325/dots-hyprland")
+                    Qt.openUrlExternally("https://github.com/sonusid1325/hyprdroid")
                 }
             }
         }
