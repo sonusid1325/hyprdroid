@@ -1,64 +1,68 @@
-# Contributing
+# Contributing Guidelines
 
-- Please, please, please, make multiple PRs if you have many features/fixes, and don't shove your personal changes along with the PR, including changed defaults
-- We can accept features that we do not personally want, but in that case we will ask you to make it configurable/optionally loaded.
-- If you want to start working on something _big_ to contribute, it might be a good idea to ask first to not waste your effort (but if you've already done it for yourself, it doesn't hurt to submit).
+Thank you for your interest in contributing to this project. To ensure a smooth collaboration process, please adhere to the following guidelines.
 
-# Translations
+## General Guidelines
 
-See `dots/.config/quickshell/ii/translations/tools`
+- **Isolate Changes:** Please submit separate Pull Requests (PRs) for distinct features or bug fixes. Avoid bundling personal configuration changes or altered defaults with your primary submission.
+- **Configurable Features:** We welcome feature proposals even if they are outside the core scope of the project. In such cases, we kindly request that these features be made configurable or optionally loaded.
+- **Significant Changes:** If you plan to undertake a substantial addition or modification, we recommend discussing it with the maintainers beforehand to ensure alignment and prevent duplicated effort.
 
-# Code
+## Translations
 
-## Dynamic loading
+For information regarding translations, please refer to the documentation located at `dots/.config/quickshell/ii/translations/tools`.
 
-- If something's not always necessary, especially when guarded by a config option to enable/disable, put it in a `Loader`
-  - Note that you will need to declare positioning properties (like `anchors`) in the `Loader`, not the `sourceComponent`
-  - When something that's to be dynamically loaded doesn't affect its parent layout, you can have a fading animation by using FadeLoader and set the `shown` prop instead of `active` and `visible`
+## Code Standards
 
-## Practical concerns
+### Dynamic Loading
 
-- Make sure what you add does not require significant resources for a minor purpose or harm usability just for the sake of looking nice. The dotfiles must remain practical for daily driving.
-- If there is something really fancy and impractical anyway, add a config option for it and make sure it's disabled by default (example: constantly rotating background clock)
+- **Loader Utilization:** If a component is not universally required—especially when guarded by a configuration option—encapsulate it within a `Loader`.
+- **Positioning:** Ensure that positioning properties (such as `anchors`) are declared within the `Loader` itself, rather than in the `sourceComponent`.
+- **Animations:** For dynamically loaded components that do not impact their parent layout, you may implement fading animations using `FadeLoader`. In such cases, utilize the `shown` property instead of `active` and `visible`.
 
-## Style
+### Practicality and Usability
 
-- Spaces
-  - Space properties and children data into meaningful groups. (but of course, don't use 2+ blanks in a row)
-  - Put spaces between text and operators: `if (condition) { ... } else { ... }` instead of `if(condition){ ... }else{ ... }`
-- As you can see, it's pretty easy to use lots of nesting. There's no hard limit, end-4 himself nests a lot too, but avoid/mitigate that:
-  - Prefer early return: Use something like `if (!condition) return; doStuff();` instead of `if (condition) { doStuff() }`
-  - If you feel it's a bother to refractor something into a new file, remember there's `component` to declare reusable components in the same file.
+- **Resource Management:** Contributions should not impose significant resource overhead for minor aesthetic enhancements. It is essential that the configuration remains highly practical and performant for daily use.
+- **Default Configurations:** Highly stylized or resource-intensive features must include a configuration toggle and should be disabled by default.
 
-# Setting up
+### Code Style
 
-The following instruction assumes that you have an Arch(-based) Linux system.
+- **Spacing and Formatting:** 
+  - Organize properties and child elements into logical groups using blank lines for readability.
+  - Insert spaces between text and operators (e.g., use `if (condition) { ... } else { ... }` rather than `if(condition){ ... }else{ ... }`).
+- **Nesting Mitigation:** While complex layouts may require nesting, please strive to minimize it where possible.
+  - **Early Returns:** Prefer early returns to reduce indentation depth (e.g., `if (!condition) return; doStuff();`).
+  - **Reusable Components:** If refactoring into a separate file is impractical, utilize the `component` keyword to declare reusable components within the same file.
 
-## Complete
+## Environment Setup
 
-_Might not be necessary depending on what you change, but this is recommended._
+The following setup instructions assume an Arch-based Linux environment.
 
-- [Install](https://ii.clsty.link/en/ii-qs/01setup/) the dotfiles (if you don't wanna replace your stuff completely, do it on a new user).
-- Make changes, copy changes to a fork, create PR.
+### Complete Installation
 
-## Partially working shell
+Although a full installation may not be strictly necessary depending on the scope of your changes, it is highly recommended. 
+- Please install the configuration on a dedicated test user account if you prefer not to modify your primary setup.
+- Implement your changes, transfer them to your fork, and submit a Pull Request.
 
-_Most stuff in the shell will work but not everything._
+### Partial Shell Functionality
 
+For a minimal development environment:
 - Install Hyprland and the development version of Quickshell (`yay -S hyprland quickshell-git`).
-- Copy `dots/.config/quickshell` folder to your home directory.
+- Copy the `dots/.config/quickshell` directory to your home directory.
 
-## Extra setup for Quickshell
-- Quickshell-specific LSP setup: Run `touch ~/.config/quickshell/ii/.qmlls.ini` for proper LSP support.
-- Hint for VSCode: Get the official "Qt Qml" extension, go to its settings and change custom exe path to `/usr/bin/qmlls6`.
+### Quickshell Configuration
 
-## Python
-If your changes involves using python package or script, please use the virtual environment created by uv as described in `sdata/uv/README.md`.
+- **LSP Support:** To enable proper Language Server Protocol (LSP) support for Quickshell, execute `touch ~/.config/quickshell/ii/.qmlls.ini`.
+- **VSCode Integration:** Install the official "Qt Qml" extension. Navigate to its settings and update the custom executable path to `/usr/bin/qmlls6`.
 
-# Running
+### Python Environment
 
-- Launch Hyprland (not the "uwsm-managed" one)
-- For the shell:
-  - Open `~/.config/quickshell/ii` in your code editor.
-  - In a terminal run `pkill qs; qs -c ii` to start the shell in the terminal (for logs).
-  - Make edits in the opened folder. Changes are reloaded live.
+If your contribution involves Python packages or scripts, please utilize the virtual environment managed by `uv`, as detailed in `sdata/uv/README.md`.
+
+## Execution and Testing
+
+- Launch Hyprland (ensure it is not the `uwsm-managed` session).
+- To start the shell for development:
+  - Open the `~/.config/quickshell/ii` directory in your preferred code editor.
+  - Execute `pkill qs; qs -c ii` within a terminal to initiate the shell and view standard output logs.
+  - Modifications made to the open directory will be hot-reloaded automatically.
