@@ -1,0 +1,12 @@
+groups=(baklava)
+pkgname=baklava-hyprland
+pkgver=1.0
+pkgrel=5
+pkgdesc='Baklava Hyprland relatated packages'
+arch=(any)
+license=(None)
+depends=(
+  hyprland
+  hyprsunset
+  wl-clipboard
+)

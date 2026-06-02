@@ -1,0 +1,16 @@
+groups=(baklava)
+pkgname=baklava-kde
+pkgver=1.0
+pkgrel=3
+pkgdesc='Baklava KDE Dependencies'
+arch=(any)
+license=(None)
+depends=(
+  bluedevil
+  gnome-keyring
+  networkmanager
+  plasma-nm
+  polkit-kde-agent
+  dolphin
+  systemsettings
+)

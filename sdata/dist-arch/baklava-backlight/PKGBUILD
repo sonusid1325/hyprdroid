@@ -1,0 +1,12 @@
+groups=(baklava)
+pkgname=baklava-backlight
+pkgver=1.0
+pkgrel=2
+pkgdesc='Baklava Backlight Dependencies'
+arch=(any)
+license=(None)
+depends=(
+  geoclue
+  brightnessctl
+  ddcutil
+)

@@ -1,0 +1,12 @@
+groups=(baklava)
+pkgname=baklava-toolkit
+pkgver=1.0
+pkgrel=3
+pkgdesc='Baklava Toolkit Dependencies'
+arch=(any)
+license=(None)
+depends=(
+  upower
+  wtype
+  ydotool
+)
